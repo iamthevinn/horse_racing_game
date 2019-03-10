@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 
-class Sqare extends Component {
-  constructor() {
+export class Square extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       occupied: false
@@ -11,27 +10,26 @@ class Sqare extends Component {
   }
 
   toggleOccupied() {
-    this.setState({ occupied: !occupied });
+    this.setState({ occupied: !this.state.occupied });
   }
 
   render() {
+    const { occupied } = this.state;
     return (
-      <div>
-        
-      </div>
+      <div className={occupied ? "OccupiedSquare" : "UnoccupiedSquare"} />
     );
   }
 }
 
-const mapStateToProps = state => {
+// const mapStateToProps = state => {
 
-  return {
-  };
-};
+//   return {
+//   };
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-  }
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//   }
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameView)
+// export default connect(mapStateToProps, mapDispatchToProps)(Square)
