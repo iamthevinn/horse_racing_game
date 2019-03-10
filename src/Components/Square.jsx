@@ -15,8 +15,13 @@ export class Square extends Component {
 
   render() {
     const { occupied } = this.state;
+    const { subsequent, rowId, position } = this.props;
+    //const classStyle = occupied ? "OccupiedSquare" : "UnoccupiedSquare";
+    const classSyle = subsequent ? "SubsequentSquare UnoccupiedSquare" : "UnoccupiedSquare";
     return (
-      <div className={occupied ? "OccupiedSquare" : "UnoccupiedSquare"} />
+      <div className={classSyle}>
+        {rowId} {position}
+      </div>
     );
   }
 }
