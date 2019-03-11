@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
-import { black } from 'ansi-colors';
-import { Row } from './Row';
+import { Lane } from './Lane';
 import { connect } from 'react-redux'
 
-export class Board extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class Board extends Component {
   render() {
+    const { horsePositions } = this.props;
     return (
       <div>
-        <Row rowId={2} length={3} />
-        <Row rowId={3} subsequent length={4} />
-        <Row rowId={4} subsequent length={5} />
-        <Row rowId={5} subsequent length={6} />
-        <Row rowId={6} subsequent length={7} />
-        <Row rowId={7} subsequent length={8} />
-        <Row rowId={8} subsequent length={7} />
-        <Row rowId={9} subsequent length={6} />
-        <Row rowId={10} subsequent length={5} />
-        <Row rowId={11} subsequent length={4} />
-        <Row rowId={12} subsequent length={3} />
+        <Lane horse={'two'} length={3} horsePosition={horsePositions.two} />
+        <Lane horse={'three'} subsequent length={4} horsePosition={horsePositions.three} />
+        <Lane horse={'four'} subsequent length={5} horsePosition={horsePositions.four} />
+        <Lane horse={'five'} subsequent length={6} horsePosition={horsePositions.five} />
+        <Lane horse={'six'} subsequent length={7} horsePosition={horsePositions.six} />
+        <Lane horse={'seven'} subsequent length={8} horsePosition={horsePositions.seven} />
+        <Lane horse={'eight'} subsequent length={7} horsePosition={horsePositions.eight} />
+        <Lane horse={'nine'} subsequent length={6} horsePosition={horsePositions.nine} />
+        <Lane horse={'ten'} subsequent length={5} horsePosition={horsePositions.ten} />
+        <Lane horse={'eleven'} subsequent length={4} horsePosition={horsePositions.eleven} />
+        <Lane horse={'twelve'} subsequent length={3} horsePosition={horsePositions.twelve} />
       </div>
     );
   }
@@ -29,6 +25,7 @@ export class Board extends Component {
 
 const mapStateToProps = state => {
   return {
+    horsePositions: state.horsePositions
   };
 };
 
@@ -37,4 +34,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Board)
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
