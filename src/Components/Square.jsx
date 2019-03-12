@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setHorsePosition } from '../Actions/GamePlayActions';
+import horse_head from '../Assets/horse_head.png'
 
 class Square extends Component {
   constructor(props) {
@@ -15,9 +16,18 @@ class Square extends Component {
 
   render() {
     const { subsequent, horse, position, occupied } = this.props;
-    const squareStyle = subsequent ? (occupied ? "SubsequentSquare OccupiedSquare" : "SubsequentSquare UnoccupiedSquare") : (occupied ? "OccupiedSquare" : "UnoccupiedSquare");
+    //const squareStyle = subsequent ? (occupied ? "SubsequentSquare OccupiedSquare" : "SubsequentSquare UnoccupiedSquare") : (occupied ? "OccupiedSquare" : "UnoccupiedSquare");
+    const squareStyle = subsequent ? "SubsequentSquare Square" : "Square";
     return (
-      <div className={squareStyle} onClick={() => this.setHorsePostion(horse, position)}>
+      <div>
+        {
+          !occupied ?
+            <div className={squareStyle} onClick={() => this.setHorsePostion(horse, position)} />
+            :
+            <div className={squareStyle} onClick={() => this.setHorsePostion(horse, position)}>
+              <img className={"HorseImage"} alt="horse head" src={horse_head} />
+            </div>
+        }
       </div>
     );
   }
