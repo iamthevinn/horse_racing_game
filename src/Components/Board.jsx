@@ -7,7 +7,7 @@ class Board extends Component {
   render() {
     const { horsePositions } = this.props;
     return (
-      <div>
+      <div className={"InlineBlock"}>
         {
           horsePositions.map((horsePosition, idx) =>
             <Lane key={idx} subsequent={idx} horse={horses[idx]} horsePosition={horsePosition} />
