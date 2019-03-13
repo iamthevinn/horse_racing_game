@@ -7,20 +7,20 @@ export class Lane extends Component {
     this.drawLane = this.drawLane.bind(this);
   }
 
-  drawLane(laneLength, horse, horsePosition, colours) {
+  drawLane(horse, horsePosition) {
     let lane = [];
-    for (let i = -5; i < laneLength; i++) {
-      lane.push(<Square subsequent={i > -5} key={i} horse={horse} position={i} occupied={horsePosition === i} colours={colours} />);
+    for (let i = -5; i < horse.laneLength; i++) {
+      lane.push(<Square key={i} subsequent={i > -5} horse={horse} squarePosition={i} occupied={horsePosition === i} />);
     }
     return lane;
   }
 
   render() {
-    const { length, subsequent, horse, horsePosition, colours } = this.props;
+    const { subsequent, horse, horsePosition } = this.props;
     const laneStyle = subsequent ? "SubsequentLane LaneStyle" : "LaneStyle";
     return ( 
       <div className={laneStyle} >
-        {this.drawLane(length, horse, horsePosition, colours)}
+        {this.drawLane(horse, horsePosition)}
       </div>
     );
   }

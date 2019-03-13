@@ -8,23 +8,22 @@ class Square extends Component {
     this.setHorsePostion = this.setHorsePostion.bind(this);
   }
 
-  setHorsePostion(horse, position) {
+  setHorsePostion(postPosition, squarePosition) {
     const { moveHorse } = this.props;
-    moveHorse(horse, position);
+    moveHorse(postPosition, squarePosition);
   }
 
   render() {
-    const { subsequent, horse, position, occupied, colours } = this.props;
-    //const squareStyle = subsequent ? (occupied ? "SubsequentSquare OccupiedSquare" : "SubsequentSquare UnoccupiedSquare") : (occupied ? "OccupiedSquare" : "UnoccupiedSquare");
+    const { subsequent, horse, squarePosition, occupied } = this.props;
     const squareStyle = subsequent ? "SubsequentSquare Square" : "Square";
     return (
       <div>
         {
           !occupied ?
-            <div className={squareStyle} onClick={() => this.setHorsePostion(horse, position)} />
+            <div className={squareStyle} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)} />
             :
-            <div className={squareStyle} onClick={() => this.setHorsePostion(horse, position)}>
-              <img className={"HorseImage"} alt="horse head" src={colours} />
+            <div className={squareStyle} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)}>
+              <img className={"HorseImage"} alt="horse head" src={horse.cloth} />
             </div>
         }
       </div>
@@ -39,7 +38,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    moveHorse: (horse, position) => dispatch(setHorsePosition(horse, position))
+    moveHorse: (postPosition, squarePosition) => dispatch(setHorsePosition(postPosition, squarePosition))
   }
 };
 
