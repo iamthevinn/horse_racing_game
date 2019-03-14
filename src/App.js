@@ -12,12 +12,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
           <Switch>
             <Route exact path="/" component={GameView} />
             <Route exact path="/gamestats" component={GameStatsView} />
           </Switch>
-        </div>
       </Router>
     );
   }

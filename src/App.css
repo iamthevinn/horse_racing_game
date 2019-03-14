@@ -35,16 +35,25 @@
 .OccupiedSquare {
   border: 5px solid black;
   background-color: black;
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
 }
 
 .Square {
   border: 5px solid black;
   background-color: white;
-  height: 55px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+}
+
+.ScratchSquare {
   width: 55px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-family: cursive;
 }
 
 .LaneStyle {
@@ -61,4 +70,11 @@
 
 .InlineBlock {
   display: inline-block;
+}
+
+.ScatchedWords {
+  width: 220px;
+  text-align: center;
+  font-size: 1.55em;
+  font-family: cursive;
 }
