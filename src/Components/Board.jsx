@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Lane } from './Lane';
 import { connect } from 'react-redux'
 import { horses } from '../Data/Horses';
-import  ScratchLine from './ScratchLine'
+import ScratchLine from './ScratchLine'
+import { Paper } from '@material-ui/core';
 
 class Board extends Component {
   render() {
     const { horsePositions } = this.props;
     return (
-      <div style={{display: 'inline-block'}}>
+      <Paper style={{ backgroundColor: '#c79157' }} className={"BoardBackground BoardPadding InlineBlock"} elevation={10} >
         <div className={"ScatchedWords"}>S C R A T C H E D</div>
         <ScratchLine />
         {
@@ -18,7 +19,7 @@ class Board extends Component {
         }
         <ScratchLine />
         <div className={"ScatchedWords"}>S C R A T C H E D</div>
-      </div>
+      </Paper>
     );
   }
 }
