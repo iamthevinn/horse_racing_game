@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class GameStatsView extends Component {
   render() {
     return (
-      <div>
+      <div style={{width: '800px'}}>
         GameStats
       </div>
     );

@@ -8,7 +8,7 @@ class Board extends Component {
   render() {
     const { horsePositions } = this.props;
     return (
-      <div>
+      <div style={{display: 'inline-block'}}>
         <div className={"ScatchedWords"}>S C R A T C H E D</div>
         <ScratchLine />
         {
