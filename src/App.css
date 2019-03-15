@@ -90,7 +90,14 @@
 }
 
 .GameTitle {
-  height: 80px;
+  height: 50px;
   font-size: 3em;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.GateDot {
+  background-color: #277053;
+  height: 50%;
+  width: 40%;
+  border-radius: 50%;
 }

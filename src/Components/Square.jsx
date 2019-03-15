@@ -20,7 +20,10 @@ class Square extends Component {
       <div>
         {
           !occupied ?
-            <div className={squareStyle} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)} />
+            squarePosition === -1 ?
+              <div className={squareStyle + " FlexCenter"} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)}><div className={"GateDot"}/></div>
+              :
+              <div className={squareStyle} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)} />
             :
             <div className={squareStyle} onClick={() => this.setHorsePostion(horse.postPosition, squarePosition)}>
               <img style={{ height: '100%', width: '100%' }} alt="horse head" src={horse.cloth} />
