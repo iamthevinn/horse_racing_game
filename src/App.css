@@ -1,3 +1,7 @@
+#root {
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -77,4 +81,16 @@
   text-align: center;
   font-size: 1.55em;
   font-family: cursive;
+}
+
+.FlexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.GameTitle {
+  height: 80px;
+  font-size: 3em;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }

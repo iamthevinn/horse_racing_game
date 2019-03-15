@@ -7,7 +7,12 @@ class GameView extends Component {
   render() {
     return (
       <div>
-        <Board />
+        <div className={"FlexCenter GameTitle"}>
+          The Horse Race Game
+        </div>
+        <div className={"FlexCenter"}>
+          <Board />
+        </div>
       </div>
     );
   }

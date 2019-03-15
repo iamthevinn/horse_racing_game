@@ -11,12 +11,14 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <div>
+        <Router>
           <Switch>
             <Route exact path="/" component={GameView} />
             <Route exact path="/gamestats" component={GameStatsView} />
           </Switch>
-      </Router>
+        </Router>
+      </div>
     );
   }
 }
