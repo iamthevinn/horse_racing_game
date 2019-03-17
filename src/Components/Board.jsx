@@ -9,17 +9,19 @@ class Board extends Component {
   render() {
     const { horsePositions } = this.props;
     return (
-      <Paper style={{ backgroundColor: '#c79157' }} className={"BoardBackground BoardPadding InlineBlock"} elevation={10} >
-        <div className={"ScatchedWords"}>S C R A T C H E D</div>
-        <ScratchLine />
-        {
-          horsePositions.map((horsePosition, idx) =>
-            <Lane key={idx} subsequent={idx} horse={horses[idx]} horsePosition={horsePosition} />
-          )
-        }
-        <ScratchLine />
-        <div className={"ScatchedWords"}>S C R A T C H E D</div>
-      </Paper>
+      <div className={"FlexCenter"}>
+        <Paper style={{ backgroundColor: '#c79157' }} className={"BoardBackground BoardPadding InlineBlock"} elevation={10} >
+          <div className={"ScatchedWords"}>S C R A T C H E D</div>
+          <ScratchLine />
+          {
+            horsePositions.map((horsePosition, idx) =>
+              <Lane key={idx} subsequent={idx} horse={horses[idx]} horsePosition={horsePosition} />
+            )
+          }
+          <ScratchLine />
+          <div className={"ScatchedWords"}>S C R A T C H E D</div>
+        </Paper>
+      </div>
     );
   }
 }

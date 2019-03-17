@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Board from '../Components/Board';
+import Dice from '../Components/Dice';
 
 class GameView extends Component {
   render() {
+    const { gameMode } = this.props;
     return (
-      <div>
-        {/* <div className={"FlexCenter GameTitle"}>
-          The Horse Race Game
-        </div> */}
-        <div className={"FlexCenter"}>
+      <div className={"FlexCenter"}>
+          {(gameMode === 'dice' || gameMode === 'numberInput') && <Dice />}
           <Board />
-        </div>
       </div>
     );
   }
@@ -20,6 +18,7 @@ class GameView extends Component {
 const mapStateToProps = state => {
 
   return {
+    gameMode: state.gameMode
   };
 };
 
