@@ -4,7 +4,7 @@ import { START_GAME, SET_POSITION, SET_DICE_TOTAL } from '../Actions/GamePlayAct
 export const initialGameState = {
   horsePositions: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
   diceTotal: undefined,
-  gameMode: 'manual'
+  gameMode: 'dice'
 };
 // {postPosition: 4, distance: 2}
 export function gamePlayReducer(state = initialGameState, action) {

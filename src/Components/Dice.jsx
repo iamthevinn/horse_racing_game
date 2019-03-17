@@ -50,7 +50,6 @@ class Dice extends Component {
               disableIndividual={true}
               ref={dice => this.reactDice = dice}
             />
-            {/* <input type='text' value={diceInput} onChange={this.handleDiceInputChange} onKeyPress={(e) => this.handleKeyPress(e, diceInput)} /> */}
           </div>
           <div>
             <Button variant="contained" color="primary" onClick={this.rollAll}>Roll</Button>
