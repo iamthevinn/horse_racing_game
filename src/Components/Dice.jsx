@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Paper, Button } from '@material-ui/core';
-import { moveHorse, SET_DICE_TOTAL } from '../Actions/GamePlayActions';
+import { rollDiceAndMoveHorse, moveHorse, SET_DICE_TOTAL } from '../Actions/GamePlayActions';
+import ReactDice from 'react-dice-complete'
+import '../../node_modules/react-dice-complete/dist/react-dice-complete.css'
 
 class Dice extends Component {
   constructor(props) {
@@ -11,10 +13,20 @@ class Dice extends Component {
     }
     this.handleDiceInputChange = this.handleDiceInputChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.rollAll = this.rollAll.bind(this);
+    this.rollDone = this.rollDone.bind(this);
   }
 
   handleDiceInputChange = (e) => {
     this.setState({ diceInput: e.target.value })
+  }
+
+  rollAll() {
+    this.reactDice.rollAll();
+  }
+
+  rollDone(diceTotal) {
+    this.props.rollDice(diceTotal);
   }
 
   handleKeyPress = (e, diceInput) => {
@@ -23,17 +35,25 @@ class Dice extends Component {
   }
 
   render() {
-    const { moveHorse } = this.props;
-    const { diceInput } = this.state;
     return (
       <Paper className={"FlexCenter DiceContainer"} elevation={10} >
         <div>
           <div>
-            <input type='text' value={diceInput} onChange={this.handleDiceInputChange} onKeyPress={(e) => this.handleKeyPress(e, diceInput)} />
+            <ReactDice
+              numDice={2}
+              outline={true}
+              outlineColor={'#000000'}
+              faceColor={'#FFFFFF'}
+              dotColor={'#000000'}
+              rollTime={1}
+              rollDone={this.rollDone}
+              disableIndividual={true}
+              ref={dice => this.reactDice = dice}
+            />
+            {/* <input type='text' value={diceInput} onChange={this.handleDiceInputChange} onKeyPress={(e) => this.handleKeyPress(e, diceInput)} /> */}
           </div>
           <div>
-            <Button variant="contained" color="primary" onClick={() => moveHorse(diceInput, 1)}>Move Up</Button>
-            <Button variant="contained" color="secondary" onClick={() => moveHorse(diceInput, -1)}>Move Back</Button>
+            <Button variant="contained" color="primary" onClick={this.rollAll}>Roll</Button>
           </div>
         </div>
       </Paper>
@@ -50,7 +70,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setDiceTotal: (diceTotal) => dispatch({ type: SET_DICE_TOTAL, data: diceTotal }),
-    moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(postPosition, numberOfSquares))
+    moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(postPosition, numberOfSquares)),
+    rollDice: (diceTotal) => dispatch(rollDiceAndMoveHorse(diceTotal))
   }
 };
 

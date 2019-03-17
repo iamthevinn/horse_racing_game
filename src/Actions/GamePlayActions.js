@@ -18,3 +18,14 @@ export function moveHorse(postPosition, numberOfSquares) {
     dispatch({ type: SET_POSITION, data: newHorsePosition });
   }
 }
+
+export function rollDiceAndMoveHorse(diceTotal) {
+  return (dispatch, getState, api) => {
+    console.log('diceTotal', diceTotal)
+    const { horsePositions } = getState();
+    const index = diceTotal - 2; // The array starts with the 2nd horse in the 0th spot
+    const squarePosition = horsePositions[index] + 1;
+    const newHorsePosition = { diceTotal, squarePosition };
+    //dispatch({ type: SET_POSITION, data: newHorsePosition });
+  }
+}
