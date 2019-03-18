@@ -51,7 +51,7 @@ class Dice extends Component {
               ref={dice => this.reactDice = dice}
             />
           </div>
-          <div>
+          <div className={"FlexCenter"}>
             <Button variant="contained" color="primary" onClick={this.rollAll}>Roll</Button>
           </div>
         </div>
