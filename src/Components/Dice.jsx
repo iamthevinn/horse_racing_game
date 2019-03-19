@@ -62,7 +62,7 @@ class Dice extends Component {
 
 const mapStateToProps = state => {
   return {
-    diceTotal: state.diceTotal
+    diceTotal: state.gamePlayReducer.diceTotal
   };
 };
 

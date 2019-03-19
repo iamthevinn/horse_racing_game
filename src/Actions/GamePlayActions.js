@@ -11,7 +11,7 @@ export function setHorsePosition(postPosition, squarePosition) {
 
 export function moveHorse(postPosition, numberOfSquares) {
   return (dispatch, getState, api) => {
-    const { horsePositions } = getState();
+    const { horsePositions } = getState().gamePlayReducer;
     const index = postPosition - 2; // The array starts with the 2nd horse in the 0th spot
     const squarePosition = horsePositions[index] + numberOfSquares;
     const newHorsePosition = { postPosition, squarePosition };
@@ -21,7 +21,7 @@ export function moveHorse(postPosition, numberOfSquares) {
 
 export function rollDiceAndMoveHorse(rolledTotal) {
   return (dispatch, getState, api) => {
-    const { horsePositions, diceTotal } = getState();
+    const { horsePositions, diceTotal } = getState().gamePlayReducer;
     const index = rolledTotal - 2; // The array starts with the 2nd horse in the 0th spot
     const squarePosition = horsePositions[index] + 1;
     const newHorsePosition = { postPosition: rolledTotal, squarePosition };

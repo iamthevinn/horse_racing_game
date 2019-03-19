@@ -18,7 +18,7 @@ class GameView extends Component {
 const mapStateToProps = state => {
 
   return {
-    gameMode: state.gameMode
+    gameMode: state.gamePlayReducer.gameMode
   };
 };
 

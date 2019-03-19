@@ -28,7 +28,7 @@ class Board extends Component {
 
 const mapStateToProps = state => {
   return {
-    horsePositions: state.horsePositions
+    horsePositions: state.gamePlayReducer.horsePositions
   };
 };
 
