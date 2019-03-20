@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Paper, Button } from '@material-ui/core';
-import { rollDiceAndMoveHorse, moveHorse, SET_DICE_TOTAL } from '../Actions/GamePlayActions';
+import { rolledDiceNowMoveHorse, moveHorse, SET_DICE_TOTAL } from '../Actions/GamePlayActions';
 import ReactDice from 'react-dice-complete'
 import '../../node_modules/react-dice-complete/dist/react-dice-complete.css'
 
@@ -26,7 +26,7 @@ class Dice extends Component {
   }
 
   rollDone(diceTotal) {
-    this.props.rollDice(diceTotal);
+    this.props.rolledDiceNowMoveHorse(diceTotal);
   }
 
   handleKeyPress = (e, diceInput) => {
@@ -35,8 +35,9 @@ class Dice extends Component {
   }
 
   render() {
+    const { lastRoll } = this.props;
     return (
-      <Paper className={"FlexCenter DiceContainer"} elevation={10} >
+      <Paper className={"DiceContainer FlexCenter"} elevation={10} >
         <div>
           <div>
             <ReactDice
@@ -48,11 +49,15 @@ class Dice extends Component {
               rollTime={1}
               rollDone={this.rollDone}
               disableIndividual={true}
+              margin={25}
               ref={dice => this.reactDice = dice}
             />
           </div>
           <div className={"FlexCenter"}>
             <Button variant="contained" color="primary" onClick={this.rollAll}>Roll</Button>
+          </div>
+          <div className={"LastRoll"} hidden={!lastRoll} >
+            Last Roll: {lastRoll}
           </div>
         </div>
       </Paper>
@@ -62,7 +67,7 @@ class Dice extends Component {
 
 const mapStateToProps = state => {
   return {
-    diceTotal: state.gamePlayReducer.diceTotal
+    lastRoll: state.gamePlayReducer.lastRoll
   };
 };
 
@@ -70,7 +75,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setDiceTotal: (diceTotal) => dispatch({ type: SET_DICE_TOTAL, data: diceTotal }),
     moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(postPosition, numberOfSquares)),
-    rollDice: (diceTotal) => dispatch(rollDiceAndMoveHorse(diceTotal))
+    rolledDiceNowMoveHorse: (diceTotal) => dispatch(rolledDiceNowMoveHorse(diceTotal))
   }
 };
 

@@ -123,3 +123,10 @@
 .AppBar {
   margin-bottom: 10px;
 }
+
+.LastRoll {
+  width: 220px;
+  padding-top: 10px;
+  text-align: center;
+  position: absolute;
+}

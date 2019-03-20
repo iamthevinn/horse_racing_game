@@ -19,15 +19,13 @@ export function moveHorse(postPosition, numberOfSquares) {
   }
 }
 
-export function rollDiceAndMoveHorse(rolledTotal) {
+export function rolledDiceNowMoveHorse(rolledTotal) {
   return (dispatch, getState, api) => {
-    const { horsePositions, diceTotal } = getState().gamePlayReducer;
+    const { horsePositions } = getState().gamePlayReducer;
     const index = rolledTotal - 2; // The array starts with the 2nd horse in the 0th spot
     const squarePosition = horsePositions[index] + 1;
     const newHorsePosition = { postPosition: rolledTotal, squarePosition };
-    if (diceTotal) {
-      dispatch({ type: SET_POSITION, data: newHorsePosition });
-    } else
-      dispatch({ type: SET_DICE_TOTAL, data: rolledTotal })
+    dispatch({ type: SET_POSITION, data: newHorsePosition });
+    dispatch({ type: SET_DICE_TOTAL, data: rolledTotal });
   }
 }

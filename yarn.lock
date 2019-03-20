@@ -8412,11 +8412,11 @@ react-dev-utils@^7.0.3:
     strip-ansi "5.0.0"
     text-table "0.2.0"
 
-react-dice-complete@^1.0.2:
+react-dice-complete@AdamTyler/react-dice-complete:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-dice-complete/-/react-dice-complete-1.0.2.tgz#00228a05a1a06111a4704a7a1f8386b618ee4432"
-  integrity sha1-ACKKBaGgYRGkcEp6H4OGthjuRDI=
+  resolved "https://codeload.github.com/AdamTyler/react-dice-complete/tar.gz/b0ca20f0d0b156b348f336e07ced54e4be8d394d"
   dependencies:
+    prop-types "^15.6.0"
     react "^15.4.2"
     react-dom "^15.4.2"
 
