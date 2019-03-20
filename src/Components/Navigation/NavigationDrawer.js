@@ -25,16 +25,10 @@ class NavigationDrawer extends React.Component {
     this.state = {
       left: false
     };
-    this.toggleDrawer = this.toggleDrawer.bind(this);
   }
-  toggleDrawer = (open) => () => {
-    this.setState({
-      left: open,
-    });
-  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, open, toggleDrawer } = this.props;
 
     const sideList = (
       <div className={classes.list}>
@@ -58,13 +52,12 @@ class NavigationDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer(true)}>Open Left</Button>
-        <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
+        <Drawer open={open} onClose={toggleDrawer}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer(false)}
-            onKeyDown={this.toggleDrawer(false)}
+            onClick={toggleDrawer}
+            onKeyDown={toggleDrawer}
           >
             {sideList}
           </div>

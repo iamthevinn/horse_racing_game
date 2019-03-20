@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 export const CustomAppBar = (props) => {
-  const { pageName } = props;
+  const { pageName, onMenuClick } = props;
 
   const styles = {
     appBar: {
@@ -18,7 +18,7 @@ export const CustomAppBar = (props) => {
   return (
     <AppBar style={styles.appBar} position="static">
       <Toolbar>
-        <IconButton aria-label="Menu">
+        <IconButton onClick={onMenuClick} aria-label="Menu">
           <MenuIcon />
         </IconButton>
         <Typography variant="h6">
