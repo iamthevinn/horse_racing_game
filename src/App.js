@@ -22,14 +22,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CustomAppBar onMenuClick={this.toggleDrawer} pageName={"Horse Racing"} />
-        <NavigationDrawer toggleDrawer={this.toggleDrawer} open={this.props.drawerOpen} />
         <Router>
-          <Switch>
-            <Route exact path="/" component={HomeView} />
-            <Route exact path="/playgame" component={GameView} />
-            <Route exact path="/gamestats" component={GameStatsView} />
-          </Switch>
+          <div>
+            <CustomAppBar onMenuClick={this.toggleDrawer} pageName={"Horse Racing"} />
+            <NavigationDrawer toggleDrawer={this.toggleDrawer} open={this.props.drawerOpen} />
+            <Switch>
+              <Route exact path="/" component={HomeView} />
+              <Route exact path="/playgame" component={GameView} />
+              <Route exact path="/gamestats" component={GameStatsView} />
+            </Switch>
+          </div>
         </Router>
       </div>
     );
