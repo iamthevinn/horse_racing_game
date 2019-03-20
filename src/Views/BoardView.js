@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-class HomeView extends Component {
+class BoardView extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div style={{width: '800px'}}>
         <h1>
-          This is the horse racing game and will be the home for all your horse racing needs.
+          BoardView
         </h1>
       </div>
     );
@@ -24,4 +27,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
+export default connect(mapStateToProps, mapDispatchToProps)(BoardView)
