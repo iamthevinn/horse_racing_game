@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import Board from '../Components/Board'
+import { setHorsePosition } from '../Actions/BoardActions'
 
 class BoardView extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const { horsePositions, moveHorse } = this.props;
     return (
-      <div style={{width: '800px'}}>
-        <h1>
-          BoardView
-        </h1>
+      <div className={"FlexCenter"}>
+        <Board horsePositions={horsePositions} moveHorse={moveHorse} />
       </div>
     );
   }
@@ -19,11 +21,13 @@ class BoardView extends Component {
 const mapStateToProps = state => {
 
   return {
+    horsePositions: state.boardReducer.horsePositions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    moveHorse: (postPosition, squarePosition) => dispatch(setHorsePosition(postPosition, squarePosition))
   }
 };
 

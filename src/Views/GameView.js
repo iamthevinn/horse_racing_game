@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Board from '../Components/Board';
 import Dice from '../Components/Dice';
+import { setHorsePosition } from '../Actions/GamePlayActions'
 
 class GameView extends Component {
   render() {
-    const { gameMode } = this.props;
+    const { gameMode, horsePositions, moveHorse } = this.props;
     return (
       <div className={"FlexCenter"}>
           {(gameMode === 'dice' || gameMode === 'numberInput') && <Dice />}
-          <Board />
+          <Board horsePositions={horsePositions} moveHorse={moveHorse} />
       </div>
     );
   }
@@ -18,12 +19,14 @@ class GameView extends Component {
 const mapStateToProps = state => {
 
   return {
-    gameMode: state.gamePlayReducer.gameMode
+    gameMode: state.gamePlayReducer.gameMode,
+    horsePositions: state.gamePlayReducer.horsePositions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    moveHorse: (postPosition, squarePosition) => dispatch(setHorsePosition(postPosition, squarePosition))
   }
 };
 

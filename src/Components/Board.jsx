@@ -7,7 +7,7 @@ import { Paper } from '@material-ui/core';
 
 class Board extends Component {
   render() {
-    const { horsePositions } = this.props;
+    const { horsePositions, moveHorse } = this.props;
     return (
       <div className={"FlexCenter"}>
         <Paper style={{ backgroundColor: '#c79157' }} className={"BoardBackground BoardPadding InlineBlock"} elevation={10} >
@@ -15,7 +15,7 @@ class Board extends Component {
           <ScratchLine />
           {
             horsePositions.map((horsePosition, idx) =>
-              <Lane key={idx} subsequent={idx} horse={horses[idx]} horsePosition={horsePosition} />
+              <Lane key={idx} subsequent={idx} horse={horses[idx]} horsePosition={horsePosition} moveHorse={moveHorse} />
             )
           }
           <ScratchLine />
@@ -28,7 +28,6 @@ class Board extends Component {
 
 const mapStateToProps = state => {
   return {
-    horsePositions: state.gamePlayReducer.horsePositions
   };
 };
 
