@@ -9,7 +9,7 @@ class GameView extends Component {
     const { gameMode, horsePositions, moveHorse } = this.props;
     return (
       <div className={"FlexCenter"}>
-          {(gameMode === 'dice' || gameMode === 'numberInput') && <Dice />}
+          {gameMode === 'dice' && <Dice />}
           <Board horsePositions={horsePositions} moveHorse={moveHorse} />
       </div>
     );
