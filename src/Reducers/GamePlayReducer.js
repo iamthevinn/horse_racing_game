@@ -1,9 +1,9 @@
-import { START_GAME, SET_POSITION_ON_GAME, SET_DICE_TOTAL } from '../Actions/GamePlayActions'
+import { START_GAME, SET_POSITION_ON_GAME, SET_DICE_TOTAL, SET_GAME_MODE } from '../Actions/GamePlayActions'
 
 export const initialGameState = {
   horsePositions: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
   lastRoll: undefined,
-  gameMode: 'dice'
+  numberInput: false
 };
 
 export function gamePlayReducer(state = initialGameState, action) {
@@ -16,6 +16,8 @@ export function gamePlayReducer(state = initialGameState, action) {
       return { ...state, horsePositions: lowerHorses.concat([action.data.squarePosition]).concat(higherHorses) };
     case SET_DICE_TOTAL:
       return { ...state, lastRoll: action.data };
+    case SET_GAME_MODE:
+      return { ...state, numberInput: action.data };
     default:
       return state;
   }
