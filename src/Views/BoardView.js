@@ -4,9 +4,6 @@ import Board from '../Components/Board'
 import { setHorsePosition } from '../Actions/BoardActions'
 
 class BoardView extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { horsePositions, moveHorse } = this.props;

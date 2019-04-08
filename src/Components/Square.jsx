@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setHorsePosition } from '../Actions/GamePlayActions';
 
 class Square extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { subsequent, horse, squarePosition, occupied, moveHorse } = this.props;

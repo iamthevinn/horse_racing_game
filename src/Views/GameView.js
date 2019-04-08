@@ -18,14 +18,14 @@ class GameView extends Component {
   }
 
   render() {
-    const { numberInput, horsePositions, moveHorse } = this.props;
+    const { numberInputMode, horsePositions, moveHorse } = this.props;
     return (
       <div className={"FlexCenter"} >
         <div>
           <FormLabel>Dice</FormLabel>
-          <Switch onChange={this.toggleGameMode} value={numberInput} />
+          <Switch onChange={this.toggleGameMode} checked={numberInputMode} />
           <FormLabel>Manual</FormLabel>
-          {numberInput ? <NumberInput /> : <Dice />}
+          {numberInputMode ? <NumberInput /> : <Dice />}
         </div>
         <Board horsePositions={horsePositions} moveHorse={moveHorse} />
       </div>
@@ -36,7 +36,7 @@ class GameView extends Component {
 const mapStateToProps = state => {
 
   return {
-    numberInput: state.gamePlayReducer.numberInput,
+    numberInputMode: state.gamePlayReducer.numberInputMode,
     horsePositions: state.gamePlayReducer.horsePositions
   };
 };

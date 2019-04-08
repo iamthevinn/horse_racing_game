@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Paper, Button } from '@material-ui/core';
-import { rolledDiceNowMoveHorse, moveHorse, SET_DICE_TOTAL } from '../Actions/GamePlayActions';
+import { rolledDiceNowMoveHorse, moveHorse } from '../Actions/GamePlayActions';
 import ReactDice from 'react-dice-complete'
 import '../../node_modules/react-dice-complete/dist/react-dice-complete.css'
 
@@ -73,7 +73,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setDiceTotal: (diceTotal) => dispatch({ type: SET_DICE_TOTAL, data: diceTotal }),
     moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(postPosition, numberOfSquares)),
     rolledDiceNowMoveHorse: (diceTotal) => dispatch(rolledDiceNowMoveHorse(diceTotal))
   }

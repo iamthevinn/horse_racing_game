@@ -2,6 +2,7 @@ export const START_GAME = "START_GAME";
 export const SET_POSITION_ON_GAME = "SET_POSITION_ON_GAME";
 export const SET_DICE_TOTAL = "SET_DICE_TOTAL";
 export const SET_GAME_MODE = "SET_GAME_MODE";
+export const SET_LAST_ENTERED_NUMBER = "SET_LAST_ENTERED_NUMBER";
 
 export function setHorsePosition(postPosition, squarePosition) {
   return (dispatch, getState, api) => {
@@ -17,6 +18,7 @@ export function moveHorse(postPosition, numberOfSquares) {
     const squarePosition = horsePositions[index] + numberOfSquares;
     const newHorsePosition = { postPosition, squarePosition };
     dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
+    dispatch({ type: SET_LAST_ENTERED_NUMBER, data: postPosition });
   }
 }
 
