@@ -20,22 +20,39 @@ class NumberInput extends Component {
 
   handleKeyPress = (e) => {
     const { diceInput } = this.state;
-    if (e.key === 'Enter')
+    if (e.key === 'Enter' && !this.isInvalidInput(diceInput)) {
       this.props.moveHorse(diceInput, 1);
+      this.setState({ diceInput: "" })
+    }
+  }
+
+  handleButtonClick = (diceInput, forwardOrBack) => {
+    this.props.moveHorse(diceInput, forwardOrBack === 'forward' ? 1 : -1);
+    this.setState({ diceInput: "" });
+  }
+
+  isInvalidInput = (diceInput) => {
+    if (isNaN(diceInput))
+      return true;
+    if (diceInput < 2 || diceInput > 12)
+      return true;
   }
 
   render() {
     const { diceInput } = this.state;
     const { lastEnteredNumber } = this.props;
+
+    const disableButtons = this.isInvalidInput(diceInput);
+
     return (
       <Paper className={"DiceContainer FlexCenter"} elevation={10} >
         <div>
           <div className={"NumberInput"}>
-            <input type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
+            <input type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
           </div>
           <div className={"FlexCenter"}>
-            <Button variant="contained" color="primary" onClick={() => this.props.moveHorse(diceInput, 1)}>Forward</Button>
-            <Button variant="contained" color="primary" onClick={() => this.props.moveHorse(diceInput, -1)}>Back</Button>
+            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Forward</Button>
+            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'back')}>Back</Button>
           </div>
           <div className={"LastRoll"} hidden={!lastEnteredNumber} >
             Last Entered Number: {lastEnteredNumber}
