@@ -1,3 +1,5 @@
+import { horses } from '../Data/Horses';
+
 export const START_GAME = "START_GAME";
 export const SET_POSITION_ON_GAME = "SET_POSITION_ON_GAME";
 export const SET_DICE_TOTAL = "SET_DICE_TOTAL";
@@ -17,8 +19,10 @@ export function moveHorse(postPosition, numberOfSquares) {
     const index = postPosition - 2; // The array starts with the 2nd horse in the 0th spot
     const squarePosition = horsePositions[index] + numberOfSquares;
     const newHorsePosition = { postPosition, squarePosition };
-    dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
-    dispatch({ type: SET_LAST_ENTERED_NUMBER, data: postPosition });
+    if (squarePosition >= -5 && squarePosition < horses[index].laneLength) {
+      dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
+      dispatch({ type: SET_LAST_ENTERED_NUMBER, data: postPosition });
+    }
   }
 }
 
@@ -28,8 +32,10 @@ export function rolledDiceNowMoveHorse(rolledTotal) {
     const index = rolledTotal - 2; // The array starts with the 2nd horse in the 0th spot
     const squarePosition = horsePositions[index] + 1;
     const newHorsePosition = { postPosition: rolledTotal, squarePosition };
-    dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
-    dispatch({ type: SET_DICE_TOTAL, data: rolledTotal });
+    if (squarePosition >= -5 && squarePosition < horses[index].laneLength) {
+      dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
+      dispatch({ type: SET_DICE_TOTAL, data: rolledTotal });
+    }
   }
 }
 

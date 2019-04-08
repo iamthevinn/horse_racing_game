@@ -18,7 +18,6 @@ export function gamePlayReducer(state = initialGameState, action) {
     case SET_DICE_TOTAL:
       return { ...state, lastRoll: action.data };
     case SET_LAST_ENTERED_NUMBER:
-      console.log('here')
       return { ...state, lastEnteredNumber: action.data };
     case SET_GAME_MODE:
       return { ...state, numberInputMode: action.data };
