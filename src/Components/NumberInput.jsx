@@ -50,9 +50,9 @@ class NumberInput extends Component {
           <div className={"NumberInput"}>
             <input type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
           </div>
-          <div className={"FlexCenter"}>
-            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Forward</Button>
+          <div className={"FlexSpaceEvenly"}>
             <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'back')}>Back</Button>
+            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Forward</Button>
           </div>
           <div className={"LastRoll"} hidden={!lastEnteredNumber} >
             Last Entered Number: {lastEnteredNumber}
