@@ -8,7 +8,7 @@ export const SET_LAST_ENTERED_NUMBER = "SET_LAST_ENTERED_NUMBER";
 
 export function setLastEnteredNumber(enteredNumber) {
   return (dispatch) => {
-    dispatch({ type: SET_LAST_ENTERED_NUMBER, data: enteredNumber});
+    dispatch({ type: SET_LAST_ENTERED_NUMBER, data: enteredNumber });
   }
 }
 
@@ -50,3 +50,5 @@ export function setGameMode(gameMode) {
     dispatch({ type: SET_GAME_MODE, data: gameMode })
   }
 }
+
+export const newGame = () => (dispatch => dispatch({ type: START_GAME }))

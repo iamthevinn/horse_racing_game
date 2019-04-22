@@ -10,7 +10,7 @@ export const initialGameState = {
 export function gamePlayReducer(state = initialGameState, action) {
   switch (action.type) {
     case START_GAME:
-      return { ...state, horsePositions: initialGameState };
+      return { ...state, ...initialGameState };
     case SET_POSITION_ON_GAME:
       const higherHorses = state.horsePositions.slice(action.data.postPosition - 1);
       const lowerHorses = state.horsePositions.slice(0, action.data.postPosition - 2);

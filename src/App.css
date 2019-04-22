@@ -179,3 +179,22 @@
   font-style: italic;
   font-size: 1.5em;
 }
+
+.GameMenu {
+  margin-right: 10px;
+  display: flex;
+}
+
+.DiceManualSlider {
+  width: 50%;
+}
+
+.ResetGame {
+  width: 50%;
+}
+
+.FlexRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
