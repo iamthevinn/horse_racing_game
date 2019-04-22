@@ -138,9 +138,44 @@
 }
 
 .NumberInput {
-  height: 114px;
-  width: 220px;
+  height: 70px;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.SubmitButton {
+  margin-left: 20px;
+}
+
+.Fill {
+  height: 100%;
+  width: 100%;
+}
+
+.ThirdHeight {
+  height: 33%;
+}
+
+.FlexCenterBottom {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.FlexCenterTop {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.PayNotification {
+  font-size: 4em;
+  color: #f50057;
+}
+
+.LastEnteredNumber {
+  font-style: italic;
+  font-size: 1.5em;
 }

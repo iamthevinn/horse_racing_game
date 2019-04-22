@@ -4,6 +4,13 @@ import { Paper, Button } from '@material-ui/core';
 import { moveHorse, setLastEnteredNumber } from '../Actions/GamePlayActions';
 import '../../node_modules/react-dice-complete/dist/react-dice-complete.css'
 
+const numberInputStyle = {
+  height: "28px",
+  textAlign: "center",
+  fontSize: "18px",
+  fontWeight: "200"
+}
+
 class NumberInput extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +60,7 @@ class NumberInput extends Component {
     const horsePositionIndex = diceInput - 2;
     const horsePosition = horsePositions[horsePositionIndex];
     if (horsePosition < -1)
-      switch(horsePosition) {
+      switch (horsePosition) {
         case -5:
           return 1;
         case -4:
@@ -72,25 +79,28 @@ class NumberInput extends Component {
     const { diceInput } = this.state;
     const { lastEnteredNumber } = this.props;
 
+    const lastToDisplay = lastEnteredNumber || 'N/A'
+
     const disableButtons = this.isInvalidInput(diceInput);
     const payAmount = this.getPayAmount(lastEnteredNumber);
     const payNotification = payAmount ? `Pay ${payAmount}` : '\xa0';
 
     return (
       <Paper className={"DiceContainer FlexCenter"} elevation={10} >
-        <div>
-          <div>
+        <div className={"Fill"}>
+          <div className={"FlexCenterBottom ThirdHeight PayNotification"}>
             {payNotification}
           </div>
-          <div className={"NumberInput"}>
-            <input type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
+          <div className={"FlexCenter ThirdHeight"}>
+            <div>
+              <input style={numberInputStyle} type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
+            </div>
+            <div className={"SubmitButton"}>
+              <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Submit</Button>
+            </div>
           </div>
-          <div className={"FlexSpaceEvenly"}>
-            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'back')}>Back</Button>
-            <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Forward</Button>
-          </div>
-          <div className={"LastRoll"} hidden={!lastEnteredNumber} >
-            Last Entered Number: {lastEnteredNumber}
+          <div className={"FlexCenterTop ThirdHeight LastEnteredNumber"} hidden={!lastEnteredNumber} >
+            Last Entered Number: {lastToDisplay}
           </div>
         </div>
       </Paper>
