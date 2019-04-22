@@ -6,6 +6,12 @@ export const SET_DICE_TOTAL = "SET_DICE_TOTAL";
 export const SET_GAME_MODE = "SET_GAME_MODE";
 export const SET_LAST_ENTERED_NUMBER = "SET_LAST_ENTERED_NUMBER";
 
+export function setLastEnteredNumber(enteredNumber) {
+  return (dispatch) => {
+    dispatch({ type: SET_LAST_ENTERED_NUMBER, data: enteredNumber});
+  }
+}
+
 export function setHorsePosition(postPosition, squarePosition) {
   return (dispatch, getState, api) => {
     const horsePosition = { postPosition, squarePosition };

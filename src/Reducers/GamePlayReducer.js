@@ -3,7 +3,7 @@ import { START_GAME, SET_POSITION_ON_GAME, SET_DICE_TOTAL, SET_GAME_MODE, SET_LA
 export const initialGameState = {
   horsePositions: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
   lastRoll: undefined,
-  numberInputMode: false,
+  numberInputMode: true,
   lastEnteredNumber: undefined
 };
 
