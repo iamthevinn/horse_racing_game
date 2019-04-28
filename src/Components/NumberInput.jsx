@@ -79,7 +79,7 @@ class NumberInput extends Component {
     const { diceInput } = this.state;
     const { lastEnteredNumber } = this.props;
 
-    const lastToDisplay = lastEnteredNumber || 'N/A'
+    const lastToDisplay = lastEnteredNumber ? `Last Entered Number: ${lastEnteredNumber}` : '\xa0';
 
     const disableButtons = this.isInvalidInput(diceInput);
     const payAmount = this.getPayAmount(lastEnteredNumber);
@@ -100,7 +100,7 @@ class NumberInput extends Component {
             </div>
           </div>
           <div className={"FlexCenterTop ThirdHeight LastEnteredNumber"} hidden={!lastEnteredNumber} >
-            Last Entered Number: {lastToDisplay}
+            {lastToDisplay}
           </div>
         </div>
       </Paper>
@@ -117,7 +117,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(postPosition, numberOfSquares)),
+    moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(parseInt(postPosition, 10), numberOfSquares)),
     setLastEnteredNumber: (enteredNumber) => dispatch(setLastEnteredNumber(enteredNumber))
   }
 };

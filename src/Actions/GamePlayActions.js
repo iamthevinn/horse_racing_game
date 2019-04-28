@@ -1,6 +1,6 @@
 import { horses } from '../Data/Horses';
 
-export const START_GAME = "START_GAME";
+export const RESET_GAME = "START_GAME";
 export const SET_POSITION_ON_GAME = "SET_POSITION_ON_GAME";
 export const SET_DICE_TOTAL = "SET_DICE_TOTAL";
 export const SET_GAME_MODE = "SET_GAME_MODE";
@@ -51,4 +51,4 @@ export function setGameMode(gameMode) {
   }
 }
 
-export const newGame = () => (dispatch => dispatch({ type: START_GAME }))
+export const resetGame = () => (dispatch => dispatch({ type: RESET_GAME }))

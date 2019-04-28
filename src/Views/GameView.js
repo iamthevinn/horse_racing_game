@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Board from '../Components/Board';
 import Dice from '../Components/Dice';
 import NumberInput from '../Components/NumberInput'
-import { setHorsePosition, setGameMode, newGame } from '../Actions/GamePlayActions'
+import { setHorsePosition, setGameMode, resetGame } from '../Actions/GamePlayActions'
 import Switch from '@material-ui/core/Switch';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => {
   return {
     moveHorse: (postPosition, squarePosition) => dispatch(setHorsePosition(postPosition, squarePosition)),
     setGameMode: (gameMode) => dispatch(setGameMode(gameMode)),
-    resetGame: () => dispatch(newGame())
+    resetGame: () => dispatch(resetGame())
   }
 };
 
