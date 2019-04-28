@@ -19,10 +19,12 @@ class GameView extends Component {
   }
 
   render() {
-    const { numberInputMode, horsePositions, moveHorse } = this.props;
+    const { numberInputMode, horsePositions, moveHorse, winner } = this.props;
+    const winnerText = winner ? `Winner: ${winner}` : '\xa0';
     return (
       <div className={"FlexCenter"} >
         <div>
+          <h1 style={{color: "#277053", fontSize: "3em", textAlign: "center"}} >{winnerText}</h1>
           <div className={"GameMenu"} >
             <div className={"DiceManualSlider"}>
               <FormLabel>Dice</FormLabel>
@@ -45,7 +47,8 @@ const mapStateToProps = state => {
 
   return {
     numberInputMode: state.gamePlayReducer.numberInputMode,
-    horsePositions: state.gamePlayReducer.horsePositions
+    horsePositions: state.gamePlayReducer.horsePositions,
+    winner: state.gamePlayReducer.winner
   };
 };
 
