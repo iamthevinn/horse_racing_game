@@ -5,14 +5,16 @@ export const initialGameState = {
   lastRoll: undefined,
   numberInputMode: true,
   lastEnteredNumber: undefined,
-  rollHistory: JSON.parse(localStorage.getItem('rollHistory')) || []
+  history: JSON.parse(localStorage.getItem('history')) || [{ numbers: [], winner: null }],
+  gameNumber: JSON.parse(localStorage.getItem('history')) ? Object.keys(JSON.parse(localStorage.getItem('history'))).length : 0
 };
 
 export const resetGameState = {
   horsePositions: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
   lastRoll: undefined,
   numberInputMode: true,
-  lastEnteredNumber: undefined
+  lastEnteredNumber: undefined,
+  gameNumber: localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history')).length + 1 : 0
 }
 
 export function gamePlayReducer(state = initialGameState, action) {
@@ -23,9 +25,16 @@ export function gamePlayReducer(state = initialGameState, action) {
       const higherHorses = state.horsePositions.slice(action.data.postPosition - 1);
       const lowerHorses = state.horsePositions.slice(0, action.data.postPosition - 2);
       const updatedHosePositions = lowerHorses.concat([action.data.squarePosition]).concat(higherHorses);
-      const updatedRollHistory = [...state.rollHistory, action.data.postPosition ];
-      localStorage.setItem('rollHistory', JSON.stringify(updatedRollHistory));
-      return { ...state, horsePositions: updatedHosePositions, rollHistory: updatedRollHistory };
+      let history = state.history;
+      if (state.history[state.gameNumber]) {
+        const thisGameRollHistory = [...state.history[state.gameNumber].numbers]; 
+        history[state.gameNumber].numbers = [...thisGameRollHistory, action.data.postPosition];
+      } else {
+        const updatedGameRollHistory = [action.data.postPosition];
+        history.push({numbers: updatedGameRollHistory, winner: null })
+      }
+      localStorage.setItem('history', JSON.stringify(history));
+      return { ...state, horsePositions: updatedHosePositions, history: history };
     case SET_DICE_TOTAL:
       return { ...state, lastRoll: action.data };
     case SET_LAST_ENTERED_NUMBER:
