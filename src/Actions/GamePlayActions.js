@@ -5,6 +5,7 @@ export const SET_POSITION_ON_GAME = "SET_POSITION_ON_GAME";
 export const SET_DICE_TOTAL = "SET_DICE_TOTAL";
 export const SET_GAME_MODE = "SET_GAME_MODE";
 export const SET_LAST_ENTERED_NUMBER = "SET_LAST_ENTERED_NUMBER";
+export const SCRATCHED_ROLLED = "SCRATCHED_ROLLED";
 
 export function setLastEnteredNumber(enteredNumber) {
   return (dispatch) => {
@@ -13,7 +14,7 @@ export function setLastEnteredNumber(enteredNumber) {
 }
 
 export function setHorsePosition(postPosition, squarePosition) {
-  return (dispatch, getState, api) => {
+  return (dispatch) => {
     const horsePosition = { postPosition, squarePosition };
     dispatch({ type: SET_POSITION_ON_GAME, data: horsePosition });
   }
@@ -46,9 +47,26 @@ export function rolledDiceNowMoveHorse(rolledTotal) {
 }
 
 export function setGameMode(gameMode) {
-  return (dispatch, getState, api) => {
+  return (dispatch) => {
     dispatch({ type: SET_GAME_MODE, data: gameMode })
   }
 }
 
-export const resetGame = () => (dispatch => dispatch({ type: RESET_GAME }))
+export const resetGame = () => (dispatch => dispatch({ type: RESET_GAME }));
+
+export const addPayAmountToGameTotal = (paidAmount, diceInput) => {
+  return (dispatch, getState) => {
+    const { gameNumberIndex, history } = getState().gamePlayReducer;
+    const gameHistory = history[gameNumberIndex];
+    const data = {
+      gameNumberIndex,
+      paidAmount,
+      gameHistory,
+      diceInput
+    }
+    dispatch({ type: SCRATCHED_ROLLED, data })
+
+    //dispatch({ type: SET_POSITION_ON_GAME, data: newHorsePosition });
+    //dispatch({ type: SET_DICE_TOTAL, data: rolledTotal });
+  }
+}

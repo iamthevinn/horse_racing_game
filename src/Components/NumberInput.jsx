@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Paper, Button } from '@material-ui/core';
-import { moveHorse, setLastEnteredNumber } from '../Actions/GamePlayActions';
+import { moveHorse, setLastEnteredNumber, addPayAmountToGameTotal } from '../Actions/GamePlayActions';
 import '../../node_modules/react-dice-complete/dist/react-dice-complete.css'
 
 const numberInputStyle = {
@@ -31,8 +31,12 @@ class NumberInput extends Component {
     const horsePositionIndex = diceInput - 2;
     const horsePosition = horsePositions[horsePositionIndex];
     if (e.key === 'Enter' && !this.isInvalidInput(diceInput)) {
-      if (horsePosition > -2)
+      if (horsePosition > -2) {
         moveHorse(diceInput, 1);
+      } else if (horsePosition < -1) {
+        const paidAmount = this.getPayAmount(diceInput);
+        this.props.addPayAmountToGameTotal(paidAmount, diceInput);  
+      }
       this.setState({ diceInput: "" })
       this.props.setLastEnteredNumber(diceInput);
     }
@@ -42,8 +46,12 @@ class NumberInput extends Component {
     const { moveHorse, horsePositions } = this.props;
     const horsePositionIndex = diceInput - 2;
     const horsePosition = horsePositions[horsePositionIndex];
-    if (horsePosition > -2)
+    if (horsePosition > -2) {
       moveHorse(diceInput, forwardOrBack === 'forward' ? 1 : -1);
+    } else if (horsePosition < -1) {
+      const paidAmount = this.getPayAmount(diceInput);
+      this.props.addPayAmountToGameTotal(paidAmount, diceInput);  
+    }
     this.setState({ diceInput: "" });
     this.props.setLastEnteredNumber(diceInput);
   }
@@ -118,7 +126,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     moveHorse: (postPosition, numberOfSquares) => dispatch(moveHorse(parseInt(postPosition, 10), numberOfSquares)),
-    setLastEnteredNumber: (enteredNumber) => dispatch(setLastEnteredNumber(enteredNumber))
+    setLastEnteredNumber: (enteredNumber) => dispatch(setLastEnteredNumber(enteredNumber)),
+    addPayAmountToGameTotal: (paidAmount, diceInput) => dispatch(addPayAmountToGameTotal(paidAmount, parseInt(diceInput), 10))
   }
 };
 

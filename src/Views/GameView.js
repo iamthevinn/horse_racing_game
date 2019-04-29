@@ -19,12 +19,14 @@ class GameView extends Component {
   }
 
   render() {
-    const { numberInputMode, horsePositions, moveHorse, winner } = this.props;
+    const { numberInputMode, horsePositions, moveHorse, winner, paidAmount } = this.props;
+    const paidText = paidAmount ? `Total Paid: ${paidAmount}` : '\xa0';
     const winnerText = winner ? `Winner: ${winner}` : '\xa0';
     return (
       <div className={"FlexCenter"} >
         <div>
           <h1 style={{color: "#277053", fontSize: "3em", textAlign: "center"}} >{winnerText}</h1>
+          <h3 style={{fontSize: "2em", textAlign: "center"}} >{paidText}</h3>
           <div className={"GameMenu"} >
             <div className={"DiceManualSlider"}>
               <FormLabel>Dice</FormLabel>
@@ -32,7 +34,7 @@ class GameView extends Component {
               <FormLabel>Manual</FormLabel>
             </div>
             <div className={"ResetGame FlexRight"}>
-              <Button onClick={this.props.resetGame} variant={"contained"} color={"secondary"} >Reset Horses</Button>
+              <Button onClick={this.props.resetGame} variant={"contained"} color={"secondary"} >New Game</Button>
             </div>
           </div>
           {numberInputMode ? <NumberInput /> : <Dice />}
@@ -48,7 +50,8 @@ const mapStateToProps = state => {
   return {
     numberInputMode: state.gamePlayReducer.numberInputMode,
     horsePositions: state.gamePlayReducer.horsePositions,
-    winner: state.gamePlayReducer.winner
+    winner: state.gamePlayReducer.winner,
+    paidAmount: state.gamePlayReducer.paidAmount
   };
 };
 
