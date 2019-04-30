@@ -1,57 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import Paper from '@material-ui/core/Paper';
-import {
-  Chart,
-  ArgumentAxis,
-  ValueAxis,
-  BarSeries,
-  Legend,
-} from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Animation } from '@devexpress/dx-react-chart';
-import { getDiceRollsByFrequency, getMoneyPaidByRace, getWinnersByFrequency } from '../Stats/StatsHelper'
-
-const Point = (props) => {
-  const { style, ...restProps } = props;
-  return (
-    <BarSeries.Point
-      style={{ ...style, animationDuration: `${(restProps.index + 1) * 0.3}s` }}
-      {...restProps}
-    />
-  );
-};
-
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import RollsByNumber from '../Stats/RollsByNumber';
+import Winners from '../Stats/Winners';
 
 class GameStatsView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      graphType: "N/A"
+    }
+    this.handleGraphTypeChange = this.handleGraphTypeChange.bind(this);
+  }
+
+  handleGraphTypeChange(e) {
+    this.setState({graphType: e.target.value});
+  }
+
   render() {
-    const { history } = this.props;
-    console.log()
+    const { graphType } = this.state;
+    const graphToDisplay = graphType === 'rollsByNumber' ? <RollsByNumber /> : graphType === 'winners' ? <Winners /> : <div></div>;
+    console.log('graphType', graphType)
+    console.log('graphType', graphToDisplay)
     return (
       <div>
-        <div>
-          <Paper>
-            <Chart
-              data={getDiceRollsByFrequency(history)}
+        <Paper style={{marginBottom: '20px'}}>
+          <FormControl style={{width: '100%'}}>
+            <InputLabel shrink htmlFor="graph-simple">Graph Type</InputLabel>
+            <Select
+              value={this.state.graphType}
+              onChange={this.handleGraphTypeChange}
+              inputProps={{
+                name: 'graphSelect',
+                id: 'graph-simple',
+              }}
             >
-              <ValueScale name="frequency" />
-              <ValueScale name="diceTotal" />
-
-              <ArgumentAxis />
-              <ValueAxis scaleName="frequency" position={"left"} showGrid={true} showLine showTicks />
-
-              <BarSeries
-                name="Times Rolled"
-                valueField="frequency"
-                argumentField="diceTotal"
-                scaleName="frequency"
-                pointComponent={Point}
-                width='30px'
-              />
-              <Animation />
-              <Legend />
-            </Chart>
-          </Paper>
-        </div>
+              <MenuItem value=""><em>None</em></MenuItem>
+              <MenuItem value={"rollsByNumber"}>Rolls By Number</MenuItem>
+              <MenuItem value={"winners"}>Winners</MenuItem>
+              <MenuItem value={"chipsPaid"}>Chips Paid</MenuItem>
+            </Select>
+        </FormControl>
+        </Paper>
+        {graphToDisplay}
       </div>
     );
   }
