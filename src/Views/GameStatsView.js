@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import RollsByNumber from '../Stats/RollsByNumber';
 import Winners from '../Stats/Winners';
+import ChipsPaid from '../Stats/ChipsPaid';
 
 class GameStatsView extends Component {
   constructor(props) {
@@ -23,9 +24,7 @@ class GameStatsView extends Component {
 
   render() {
     const { graphType } = this.state;
-    const graphToDisplay = graphType === 'rollsByNumber' ? <RollsByNumber /> : graphType === 'winners' ? <Winners /> : <div></div>;
-    console.log('graphType', graphType)
-    console.log('graphType', graphToDisplay)
+    const graphToDisplay = graphType === 'rollsByNumber' ? <RollsByNumber /> : graphType === 'winners' ? <Winners /> : graphType === 'chipsPaid' ? <ChipsPaid /> : <div></div>;
     return (
       <div>
         <Paper style={{marginBottom: '20px'}}>

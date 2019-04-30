@@ -42,7 +42,6 @@ class RollsByNumber extends Component {
               argumentField="diceTotal"
               scaleName="frequency"
               pointComponent={Point}
-              width='30px'
             />
             <Animation />
             <Legend />

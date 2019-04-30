@@ -42,7 +42,6 @@ class Winners extends Component {
               argumentField="winner"
               scaleName="frequency"
               pointComponent={Point}
-              width='30px'
             />
             <Animation />
             <Legend />
