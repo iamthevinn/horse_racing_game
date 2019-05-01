@@ -42,7 +42,7 @@ export function getDiceRollsByFrequency(history) {
 
 export function getMoneyPaidByRace(history) {
   return history ? history.map((race, raceIndex) => {
-    return { raceNumber: raceIndex.toString(), amount: race.paidAmount };
+    return { raceNumber: (raceIndex + 1).toString(), amount: race.paidAmount };
   }) : [];
 }
 

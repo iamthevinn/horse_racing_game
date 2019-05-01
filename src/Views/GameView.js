@@ -19,14 +19,15 @@ class GameView extends Component {
   }
 
   render() {
-    const { numberInputMode, horsePositions, moveHorse, winner, paidAmount } = this.props;
-    const paidText = paidAmount ? `Total Paid: ${paidAmount}` : '\xa0';
+    const { numberInputMode, horsePositions, moveHorse, winner, paidAmount, gameNumberIndex } = this.props;
     const winnerText = winner ? `Winner: ${winner}` : '\xa0';
+    const raceNumber = gameNumberIndex + 1;
     return (
       <div className={"FlexCenter"} >
         <div>
-          <h1 style={{color: "#277053", fontSize: "3em", textAlign: "center"}} >{winnerText}</h1>
-          <h3 style={{fontSize: "2em", textAlign: "center"}} >{paidText}</h3>
+          <div style={{color: "#277053", fontSize: "3em", textAlign: "center"}} >{winnerText}</div>
+          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Race Number: {raceNumber}</div>
+          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}</div>
           <div className={"GameMenu"} >
             <div className={"DiceManualSlider"}>
               <FormLabel>Dice</FormLabel>
@@ -51,7 +52,8 @@ const mapStateToProps = state => {
     numberInputMode: state.gamePlayReducer.numberInputMode,
     horsePositions: state.gamePlayReducer.horsePositions,
     winner: state.gamePlayReducer.winner,
-    paidAmount: state.gamePlayReducer.paidAmount
+    paidAmount: state.gamePlayReducer.paidAmount,
+    gameNumberIndex: state.gamePlayReducer.gameNumberIndex
   };
 };
 

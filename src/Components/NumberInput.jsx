@@ -27,7 +27,16 @@ class NumberInput extends Component {
 
   handleKeyPress = (e) => {
     const { diceInput } = this.state;
-    const { moveHorse, horsePositions } = this.props;
+    const { moveHorse, horsePositions, winner } = this.props;
+
+    if (diceInput === "reset") {
+      localStorage.clear();
+      window.location.reload();
+    }
+
+    if (winner)
+      return;
+
     const horsePositionIndex = diceInput - 2;
     const horsePosition = horsePositions[horsePositionIndex];
     if (e.key === 'Enter' && !this.isInvalidInput(diceInput)) {
@@ -35,7 +44,7 @@ class NumberInput extends Component {
         moveHorse(diceInput, 1);
       } else if (horsePosition < -1) {
         const paidAmount = this.getPayAmount(diceInput);
-        this.props.addPayAmountToGameTotal(paidAmount, diceInput);  
+        this.props.addPayAmountToGameTotal(paidAmount, diceInput);
       }
       this.setState({ diceInput: "" })
       this.props.setLastEnteredNumber(diceInput);
@@ -43,14 +52,19 @@ class NumberInput extends Component {
   }
 
   handleButtonClick = (diceInput, forwardOrBack) => {
-    const { moveHorse, horsePositions } = this.props;
+    const { moveHorse, horsePositions, winner } = this.props;
     const horsePositionIndex = diceInput - 2;
     const horsePosition = horsePositions[horsePositionIndex];
+
+    if (winner)
+      return;
+
+
     if (horsePosition > -2) {
       moveHorse(diceInput, forwardOrBack === 'forward' ? 1 : -1);
     } else if (horsePosition < -1) {
       const paidAmount = this.getPayAmount(diceInput);
-      this.props.addPayAmountToGameTotal(paidAmount, diceInput);  
+      this.props.addPayAmountToGameTotal(paidAmount, diceInput);
     }
     this.setState({ diceInput: "" });
     this.props.setLastEnteredNumber(diceInput);
@@ -119,7 +133,8 @@ class NumberInput extends Component {
 const mapStateToProps = state => {
   return {
     lastEnteredNumber: state.gamePlayReducer.lastEnteredNumber,
-    horsePositions: state.gamePlayReducer.horsePositions
+    horsePositions: state.gamePlayReducer.horsePositions,
+    winner: state.gamePlayReducer.winner
   };
 };
 

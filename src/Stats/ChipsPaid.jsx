@@ -5,8 +5,8 @@ import {
   Chart,
   ArgumentAxis,
   ValueAxis,
-  SplineSeries,
   Legend,
+  LineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
 import { getMoneyPaidByRace } from './StatsHelper'
@@ -26,7 +26,7 @@ class ChipsPaid extends Component {
             <ArgumentAxis />
             <ValueAxis scaleName="amount" showGrid={true} />
 
-            <SplineSeries
+            <LineSeries
               name="Money Paid By Race"
               valueField="amount"
               argumentField="raceNumber"
