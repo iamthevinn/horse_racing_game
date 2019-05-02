@@ -7,8 +7,9 @@ import {
   ValueAxis,
   BarSeries,
   Legend,
+  Tooltip
 } from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Animation } from '@devexpress/dx-react-chart';
+import { ValueScale, Animation, EventTracker } from '@devexpress/dx-react-chart';
 import { getDiceRollsByFrequency, getMoneyPaidByRace, getWinnersByFrequency } from './StatsHelper'
 
 const Point = (props) => {
@@ -45,6 +46,8 @@ class RollsByNumber extends Component {
             />
             <Animation />
             <Legend />
+            <EventTracker />
+            <Tooltip />
           </Chart>
         </Paper>
       </div>

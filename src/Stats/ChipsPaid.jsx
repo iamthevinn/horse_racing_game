@@ -7,8 +7,9 @@ import {
   ValueAxis,
   Legend,
   LineSeries,
+  Tooltip
 } from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Animation } from '@devexpress/dx-react-chart';
+import { ValueScale, Animation, EventTracker } from '@devexpress/dx-react-chart';
 import { getMoneyPaidByRace } from './StatsHelper'
 
 class ChipsPaid extends Component {
@@ -34,6 +35,8 @@ class ChipsPaid extends Component {
             />
             <Animation />
             <Legend />
+            <EventTracker />
+            <Tooltip />
           </Chart>
         </Paper>
       </div>
