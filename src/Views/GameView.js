@@ -20,12 +20,12 @@ class GameView extends Component {
 
   render() {
     const { numberInputMode, horsePositions, moveHorse, winner, paidAmount, gameNumberIndex } = this.props;
-    const winnerText = winner ? `Winner: ${winner}` : '\xa0';
+    const winnerText = winner ? <div className={"Winner"}>Winner: {winner}</div> : <div className={"NoWinner"}>{'\xa0'}</div>;
     const raceNumber = gameNumberIndex + 1;
     return (
       <div className={"FlexCenter"} >
         <div>
-          <div style={{color: "#277053", fontSize: "3em", textAlign: "center"}} >{winnerText}</div>
+          {winnerText}
           <div style={{fontSize:'2em', fontWeight: 'bold'}}>Race Number: {raceNumber}</div>
           <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}</div>
           <div className={"GameMenu"} >

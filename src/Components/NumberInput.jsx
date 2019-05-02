@@ -115,7 +115,7 @@ class NumberInput extends Component {
           </div>
           <div className={"FlexCenter ThirdHeight"}>
             <div>
-              <input style={numberInputStyle} type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
+              <input autoFocus style={numberInputStyle} type={"text"} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} value={diceInput} />
             </div>
             <div className={"SubmitButton"}>
               <Button disabled={disableButtons} variant="contained" color="primary" onClick={() => this.handleButtonClick(diceInput, 'forward')}>Submit</Button>
