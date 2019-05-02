@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import RollsByNumber from '../Stats/RollsByNumber';
 import Winners from '../Stats/Winners';
 import ChipsPaid from '../Stats/ChipsPaid';
+import ScratchedRollsByNumber from '../Stats/ScratchedRollsByNumber';
 
 class GameStatsView extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class GameStatsView extends Component {
 
   render() {
     const { graphType } = this.state;
-    const graphToDisplay = graphType === 'rollsByNumber' ? <RollsByNumber /> : graphType === 'winners' ? <Winners /> : graphType === 'chipsPaid' ? <ChipsPaid /> : <div></div>;
+    const graphToDisplay = graphType === 'rollsByNumber' ? <RollsByNumber /> : graphType === 'winners' ? <Winners /> : graphType === 'chipsPaid' ? <ChipsPaid /> : graphType === 'scratches' ? <ScratchedRollsByNumber /> : <div></div>;
     return (
       <div>
         <Paper style={{marginBottom: '20px'}}>
@@ -42,6 +43,7 @@ class GameStatsView extends Component {
               <MenuItem value={"rollsByNumber"}>Rolls By Number</MenuItem>
               <MenuItem value={"winners"}>Winners</MenuItem>
               <MenuItem value={"chipsPaid"}>Chips Paid</MenuItem>
+              <MenuItem value={"scratches"}>Times Scratched</MenuItem>
             </Select>
         </FormControl>
         </Paper>

@@ -46,4 +46,22 @@ export function getMoneyPaidByRace(history) {
   }) : [];
 }
 
-
+export function getScratchedRollsByFrequency(history) {
+  const allScratchedNumbers = history ? history.map(race => {
+    const scratchedNumbersForThisRace = race.scratchedNumbers || [];
+    return [...new Set(scratchedNumbersForThisRace)]
+  }).flat() : [];
+  return [
+    { diceTotal: "2", frequency: frequencyOfNumber(allScratchedNumbers, 2) },
+    { diceTotal: "3", frequency: frequencyOfNumber(allScratchedNumbers, 3) },
+    { diceTotal: "4", frequency: frequencyOfNumber(allScratchedNumbers, 4) },
+    { diceTotal: "5", frequency: frequencyOfNumber(allScratchedNumbers, 5) },
+    { diceTotal: "6", frequency: frequencyOfNumber(allScratchedNumbers, 6) },
+    { diceTotal: "7", frequency: frequencyOfNumber(allScratchedNumbers, 7) },
+    { diceTotal: "8", frequency: frequencyOfNumber(allScratchedNumbers, 8) },
+    { diceTotal: "9", frequency: frequencyOfNumber(allScratchedNumbers, 9) },
+    { diceTotal: "10", frequency: frequencyOfNumber(allScratchedNumbers, 10) },
+    { diceTotal: "11", frequency: frequencyOfNumber(allScratchedNumbers, 11) },
+    { diceTotal: "12", frequency: frequencyOfNumber(allScratchedNumbers, 12) }
+  ];
+}
