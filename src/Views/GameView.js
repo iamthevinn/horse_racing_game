@@ -28,7 +28,7 @@ class GameView extends Component {
         <div>
           {winnerText}
           <div style={{fontSize:'2em', fontWeight: 'bold'}}>Race Number: {raceNumber}</div>
-          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}  ({Math.floor(paidAmount * numberOfDecks / 4)}. R.{(paidAmount * numberOfDecks) % 4})</div>
+          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}  ({Math.floor(paidAmount / (4 * numberOfDecks))}. R.{(paidAmount) % (4 * numberOfDecks)})</div>
           <div className={"GameMenu"} >
             <div className={"DiceManualSlider"}>
               <FormLabel>Dice</FormLabel>

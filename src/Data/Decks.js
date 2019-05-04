@@ -1,1 +1,1 @@
-export const numberOfDecks = 1;
+export const numberOfDecks = 3;
