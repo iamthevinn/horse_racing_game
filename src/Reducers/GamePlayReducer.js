@@ -7,11 +7,12 @@ import {
   SCRATCHED_ROLLED
 } from '../Actions/GamePlayActions'
 import { horses } from '../Data/Horses';
+import { numberOfDecks } from '../Data/Decks';
 
 const defaultHistoryEntry = {
   forwardNumbers: [],
   winner: null,
-  paidAmount: 0,
+  paidAmount: 40 * numberOfDecks,
   scratchedNumbers: []
 }
 
@@ -23,7 +24,7 @@ export const initialGameState = {
   history: JSON.parse(localStorage.getItem('history')) || [defaultHistoryEntry],
   gameNumberIndex: JSON.parse(localStorage.getItem('history')) ? Object.keys(JSON.parse(localStorage.getItem('history'))).length : 0,
   winner: undefined,
-  paidAmount: 0
+  paidAmount: 40 * numberOfDecks
 };
 
 const resetGameState = {
@@ -32,7 +33,7 @@ const resetGameState = {
   numberInputMode: true,
   lastEnteredNumber: undefined,
   winner: undefined,
-  paidAmount: 0
+  paidAmount: 40 * numberOfDecks
 }
 
 export function gamePlayReducer(state = initialGameState, action) {
@@ -62,10 +63,10 @@ export function gamePlayReducer(state = initialGameState, action) {
       } else {
         if (squarePosition < -1) {
           const thisGameScratchedHistory = [postPosition];
-          history[state.gameNumberIndex] = { scratchedNumbers: thisGameScratchedHistory, winner: null, paidAmount: 0, forwardNumbers: []}
+          history[state.gameNumberIndex] = { scratchedNumbers: thisGameScratchedHistory, winner: null, paidAmount: 40 * numberOfDecks, forwardNumbers: []}
         } else {
           const updatedGameRollHistory = [postPosition];
-          history[state.gameNumberIndex] = { forwardNumbers: updatedGameRollHistory, winner: null, paidAmount: 0, scratchedNumbers: [] };
+          history[state.gameNumberIndex] = { forwardNumbers: updatedGameRollHistory, winner: null, paidAmount: 40 * numberOfDecks, scratchedNumbers: [] };
         }
       }
       const horseLaneLength = horses.find(horse => horse.postPosition === postPosition).laneLength - 1;

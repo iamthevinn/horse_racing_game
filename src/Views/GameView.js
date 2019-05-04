@@ -7,6 +7,7 @@ import { setHorsePosition, setGameMode, resetGame } from '../Actions/GamePlayAct
 import Switch from '@material-ui/core/Switch';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Button } from '@material-ui/core';
+import { numberOfDecks } from '../Data/Decks';
 
 class GameView extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class GameView extends Component {
         <div>
           {winnerText}
           <div style={{fontSize:'2em', fontWeight: 'bold'}}>Race Number: {raceNumber}</div>
-          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}</div>
+          <div style={{fontSize:'2em', fontWeight: 'bold'}}>Chips Paid: {paidAmount}  ({Math.floor(paidAmount * numberOfDecks / 4)}. R.{(paidAmount * numberOfDecks) % 4})</div>
           <div className={"GameMenu"} >
             <div className={"DiceManualSlider"}>
               <FormLabel>Dice</FormLabel>
